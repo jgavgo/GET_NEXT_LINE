@@ -6,7 +6,7 @@
 /*   By: jgavilan <jgavilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 21:09:30 by jgavilan          #+#    #+#             */
-/*   Updated: 2023/08/14 18:11:11 by jgavilan         ###   ########.fr       */
+/*   Updated: 2023/08/14 19:23:03 by jgavilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ char	*ft_fill_data(char *data, int fd)
 	buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buff)
 		return (NULL);
+	bytes = read(fd, buff, BUFFER_SIZE);
 	while (bytes > 0 || !ft_strchar(data, '\n'))
 	{
 		free (buff);
@@ -60,7 +61,7 @@ char	*get_next_line(int fd)
 	return (ft_newline(data));
 }
 
-/*int	main(void)
+int	main(void)
 {
 	int		fd;
 	char	*str;
@@ -75,4 +76,4 @@ char	*get_next_line(int fd)
 	free(str);
 	close(fd);
 	return (0);
-}*/
+}

@@ -6,7 +6,7 @@
 /*   By: jgavilan <jgavilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 22:18:33 by jgavilan          #+#    #+#             */
-/*   Updated: 2023/08/14 18:12:51 by jgavilan         ###   ########.fr       */
+/*   Updated: 2023/08/14 19:25:54 by jgavilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,18 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*str;
 	int		lens1;
 	int		lens2;
 	int		i;
 
+	write(1, "prueba de que llego aqui", 24);
 	if (s1 && s2)
 	{
-		lens1 = ft_strlen(s1);
-		lens2 = ft_strlen(s2);
+		lens1 = ft_strlen((char *)s1);
+		lens2 = ft_strlen((char *)s2);
 		str = malloc((lens1 + lens2 + 1) * sizeof(char));
 		if (!str)
 			return (NULL);

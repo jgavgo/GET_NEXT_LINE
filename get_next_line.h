@@ -6,7 +6,7 @@
 /*   By: jgavilan <jgavilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 21:12:38 by jgavilan          #+#    #+#             */
-/*   Updated: 2023/08/14 18:09:36 by jgavilan         ###   ########.fr       */
+/*   Updated: 2023/08/14 19:11:00 by jgavilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 char	*get_next_line(int fd);
 size_t	ft_strlcpy(char *dst, char *src, size_t dstsize);
 char	*ft_substr(char *s, int start, size_t len);
-char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_strlen(char *str);
 char	*ft_strchar(char *data, char c);
 char	*ft_free(char **buffer);
