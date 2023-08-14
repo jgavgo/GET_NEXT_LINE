@@ -6,13 +6,13 @@
 /*   By: jgavilan <jgavilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 22:18:33 by jgavilan          #+#    #+#             */
-/*   Updated: 2023/08/10 18:15:21 by jgavilan         ###   ########.fr       */
+/*   Updated: 2023/08/14 18:12:51 by jgavilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strchar(const char *data, char c)
+char	*ft_strchar(char *data, char c)
 {
 	int	i;
 
@@ -31,12 +31,12 @@ int	ft_strlen(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] != 0)
+	while (str[i] != '\0')
 		i++;
 	return (i);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*str;
 	int		lens1;
@@ -65,7 +65,43 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (NULL);
 }
 
-int bytes = 1;
+char	*ft_substr(char *s, int start, size_t len)
+{
+	char	*ret;
+
+	if (!s)
+		return (NULL);
+	if (ft_strlen(s) <= start)
+		return (NULL);
+	if ((ft_strlen(s) - start) < (int)len)
+		len = ft_strlen(s) - start;
+	ret = malloc(sizeof(char) * (len + 1));
+	if (!ret)
+		return (NULL);
+	ft_strlcpy(ret, s + start, len + 1);
+	return (ret);
+}
+
+size_t	ft_strlcpy(char *dst, char *src, size_t dstsize)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = ft_strlen(src);
+	if (dstsize != 0)
+	{
+		while ((src[i] != '\0') && (i < dstsize -1))
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
+	}
+	return (j);
+}
+
+/*int bytes = 1;
 char *buffer;
 char *line;
 
@@ -79,4 +115,4 @@ while(bytes > 0 || ft_strchar(buffer, '\n'))
 	bytes = read(fd, buffer, BUFFER_SIZE);
 	line = ft_strjoin(line, buffer);
 }
-
+*/

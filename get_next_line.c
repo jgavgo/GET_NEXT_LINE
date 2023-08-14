@@ -6,12 +6,11 @@
 /*   By: jgavilan <jgavilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 21:09:30 by jgavilan          #+#    #+#             */
-/*   Updated: 2023/08/10 20:54:19 by jgavilan         ###   ########.fr       */
+/*   Updated: 2023/08/14 18:11:11 by jgavilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 char	*ft_free(char **buffer)
 {
@@ -20,57 +19,60 @@ char	*ft_free(char **buffer)
 	return (NULL);
 }
 
-char	*ft_readline(char *data, int fd, int flag)
+char	*ft_newline(char *data)
+{
+	char	*line;
+
+	if (!data)
+		return (NULL);
+	else
+		line = ft_substr(data, 0, (size_t)ft_strchar(data, '\n'));
+	return (line);
+}
+
+char	*ft_fill_data(char *data, int fd)
 {
 	char	*buff;
+	int		bytes;
 
+	bytes = 1;
 	buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buff)
 		return (NULL);
-	while (flag > 0 && strchr)
-		flag = read(fd, buff, BUFFER_SIZE);
-	if (flag < 0)
-		return (NULL);
-	if (flag == 0)
-		return (data);
-	
+	while (bytes > 0 || !ft_strchar(data, '\n'))
+	{
+		free (buff);
+		bytes = read(fd, buff, BUFFER_SIZE);
+		data = ft_strjoin(data, buff);
+	}
+	return (data);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*data;
-	char		*line;
-	int			flag;
+	static char	*data = NULL;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
-	flag = read(fd, data, BUFFER_SIZE)
-	if ((data && !ft_strchar(data, '\n')) || !data)
-		data = ft_readline(data, fd, 1);
-
-	// hola que tal estas '\n' jaja	
-	line = substr(data, 0, posicion de '\n');
-	//funcion que devuelva hasta el '\n'
-
-	data = substr(data, pos '\n', longitud total);
-	//funcion que elimine de la estatica la linea que acabas de enviar
-	//, es decir, substr desde '\n' hasta el final
-	return (line);
+	data = ft_fill_data(data, fd);
+	if (!data)
+		return (NULL);
+	return (ft_newline(data));
 }
 
-#include <fcntl.h>
-#include <stdio.h>
-int	main(void)
+/*int	main(void)
 {
-	char	*arr;
-	char	res[BUFFER_SIZE];
-	int	fd = open("hola.txt", O_RDONLY);
+	int		fd;
+	char	*str;
+	size_t	num_bytes;
 
-	arr = (char *)malloc(BUFFER_SIZE * sizeof(char));
-	arr = get_next_line(fd);
-	printf("%s", arr);
-	arr = get_next_line(fd);
-	printf("%s", arr);
+	fd = open("hola.txt", O_RDONLY);
+	str = get_next_line(fd);
+	printf("%s", str);
+	free(str);
+	str = get_next_line(fd);
+	printf("%s", str);
+	free(str);
 	close(fd);
 	return (0);
-}
+}*/
