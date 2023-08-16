@@ -6,7 +6,7 @@
 /*   By: jgavilan <jgavilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 21:09:30 by jgavilan          #+#    #+#             */
-/*   Updated: 2023/08/14 19:23:03 by jgavilan         ###   ########.fr       */
+/*   Updated: 2023/08/16 19:48:17 by jgavilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,18 @@ char	*ft_fill_data(char *data, int fd)
 	if (!buff)
 		return (NULL);
 	bytes = read(fd, buff, BUFFER_SIZE);
+	// return (buff);
 	while (bytes > 0 || !ft_strchar(data, '\n'))
 	{
-		free (buff);
 		bytes = read(fd, buff, BUFFER_SIZE);
-		data = ft_strjoin(data, buff);
+		write(1, "hola", 4);
+		if (bytes > 0)
+		{
+			buff[bytes] = '\0';
+			data = ft_strjoin(data, buff);
+		}
 	}
+	free (buff);
 	return (data);
 }
 
@@ -58,14 +64,15 @@ char	*get_next_line(int fd)
 	data = ft_fill_data(data, fd);
 	if (!data)
 		return (NULL);
-	return (ft_newline(data));
+	// return (ft_newline(data));
+	return (data);
 }
 
 int	main(void)
 {
 	int		fd;
 	char	*str;
-	size_t	num_bytes;
+	ssize_t	num_bytes;
 
 	fd = open("hola.txt", O_RDONLY);
 	str = get_next_line(fd);

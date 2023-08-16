@@ -6,14 +6,14 @@
 /*   By: jgavilan <jgavilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 21:12:38 by jgavilan          #+#    #+#             */
-/*   Updated: 2023/08/14 19:11:00 by jgavilan         ###   ########.fr       */
+/*   Updated: 2023/08/16 19:44:27 by jgavilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 40
+#  define BUFFER_SIZE 50
 # endif
 
 # include <stdlib.h>

@@ -6,7 +6,7 @@
 /*   By: jgavilan <jgavilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 22:18:33 by jgavilan          #+#    #+#             */
-/*   Updated: 2023/08/14 19:25:54 by jgavilan         ###   ########.fr       */
+/*   Updated: 2023/08/16 19:07:14 by jgavilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	int		lens2;
 	int		i;
 
-	write(1, "prueba de que llego aqui", 24);
 	if (s1 && s2)
 	{
 		lens1 = ft_strlen((char *)s1);
@@ -101,8 +100,8 @@ size_t	ft_strlcpy(char *dst, char *src, size_t dstsize)
 	}
 	return (j);
 }
-
-/*int bytes = 1;
+/*
+int bytes = 1;
 char *buffer;
 char *line;
 
@@ -116,4 +115,5 @@ while(bytes > 0 || ft_strchar(buffer, '\n'))
 	bytes = read(fd, buffer, BUFFER_SIZE);
 	line = ft_strjoin(line, buffer);
 }
+
 */
