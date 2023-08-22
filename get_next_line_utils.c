@@ -6,7 +6,7 @@
 /*   By: jgavilan <jgavilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 22:18:33 by jgavilan          #+#    #+#             */
-/*   Updated: 2023/08/18 14:55:21 by jgavilan         ###   ########.fr       */
+/*   Updated: 2023/08/22 17:53:08 by jgavilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@ char	*ft_strchar(char *data, char c)
 	while (data[i] != '\0')
 	{
 		if (data[i] == c)
-			return ((char *)&data[i]);
+			return ((char *)data + i);
 		i++;
 	}
+	if (c == '\0')
+		return ((char *)data + i);
 	return (NULL);
 }
 
@@ -47,7 +49,7 @@ char	*ft_strjoin(char *data, char *buff)
 	lens2 = ft_strlen((char *)buff);
 	str = malloc((lens1 + lens2 + 1) * sizeof(char));
 	if (!str)
-		return (NULL);
+		return (ft_free(&data));
 	i = -1;
 	while (data[++i] && data[i] != '\0')
 		str[i] = data[i];
